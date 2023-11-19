@@ -1,151 +1,176 @@
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(MaterialApp(
-    home: UserManualPage(),
-    debugShowCheckedModeBanner: false,
-  ));
+  runApp(MyApp());
 }
 
-class UserManualPage extends StatelessWidget {
+class MyApp extends StatelessWidget {
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      title: 'ঢাবিয়ান সমাচার',
+      theme: ThemeData(
+        primarySwatch: Colors.blue,
+        scaffoldBackgroundColor: Colors.white,
+        appBarTheme: AppBarTheme(
+          color: Colors.black,
+          centerTitle: true,
+        ),
+      ),
+      debugShowCheckedModeBanner: false,
+      home: TermsAndConditionsPage(),
+    );
+  }
+}
+
+class TermsAndConditionsPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text('User Manual'),
-        backgroundColor: Colors.black, // Black app bar
-        centerTitle: true, // Center the title text
+        title: Text(
+          'Terms and Conditions',
+          style: TextStyle(color: Colors.white), // White title text
+        ),
+        backgroundColor: Colors.black, // Black title bar
       ),
-      body: SingleChildScrollView(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            Center(
-              child: CircleAvatar(
-                radius: 70.0,
-                backgroundImage: NetworkImage(
-                  'https://img.freepik.com/premium-vector/curzon-hall-vector-artwork-dhaka-university_851451-8.jpg?w=740',
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: SingleChildScrollView(
+          child: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Align(
+                alignment: Alignment.center,
+                child: CircleAvatar(
+                  radius: 50,
+                  backgroundImage: NetworkImage(
+                      "https://img.freepik.com/premium-vector/curzon-hall-vector-artwork-dhaka-university_851451-8.jpg?w=740"),
                 ),
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                'Hello People! Welcome To This Ultimate User Guide Of Our App',
-                style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
+              SizedBox(height: 16.0),
+              SectionTitle('ঢাবিয়ান সমাচার - Welcome!'),
+              SectionContent(
+                'By accessing or using ঢাবিয়ান সমাচার, you agree to abide by these terms and conditions. If you do not agree, please refrain from using the app.',
               ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Text(
-                'ঢাবিয়ান সমাচার is like your online hangout space at Dhaka University. '
-                    'It\'s where you connect, share, and stay updated with what\'s happening around you.',
+              SectionTitle('1. User Accounts'),
+              SectionContent(
+                'To unleash the full potential of ঢাবিয়ান সমাচার:\n'
+                    '  - Keep your login credentials secure.\n'
+                    '  - Do not share your password with others.\n'
+                    '  - You are responsible for all activities under your account.',
               ),
-            ),
-            _buildSectionCard(
-              title: 'Let\'s Get Started',
-              description:
-              'Installation:\n1. Download ঢাবিয়ান সমাচার: Find its APK file and download it.\n2. Install the App: Put it on your device.',
-              imageUrl: 'https://drive.google.com/uc?export=view&id=1Fgi8_d7HMVQa1RHI5AN-Yy36WmbGBSrn',
-            ),
-            _buildSectionCard(
-              title: 'Account Creation',
-              description:
-              '1. Sign Up: Open the app and click on "Sign Up." Fill in the required information. Click the signup button.\n'
-                  '2. Already a Member? Login: Use your details to get in.',
-              imageUrl: 'https://drive.google.com/uc?export=view&id=1LRmg2GMf0C2VaU88R5KMpVYLYn3Mh17f',
-            ),
-            _buildSectionCard(
-              title: 'Your Main Hub',
-              description:
-              'App Bar: The top part of your screen with buttons.\n'
-                  'Profile Picture: Your profile picture icon is shown at the top right corner.\n'
-                  'Home Symbol (News Feed): Click to see what\'s happening.\n'
-                  'News Symbol (Content Page): Explore all the cool posts.',
-              imageUrl: 'https://drive.google.com/uc?export=view&id=1YZVnDyM3DK0HPTtuKd-39HMh8itC5s90',
-            ),
-            _buildSectionCard(
-              title: 'Let\'s Do Stuff',
-              description:
-              'Making a Post:\n1. Click the Plus Sign: It\'s to make a new post.\n'
-                  '2. Add a Picture and Words: Put in a cool picture and write something.\n'
-                  '3. Submit to Post: Share it with everyone.',
-              imageUrl: 'https://drive.google.com/uc?export=view&id=1xPDPqoC3pPDgaiEngx1SHcqCA-iiGPq1',
-            ),
-            _buildSectionCard(
-              title: 'Interacting with Posts',
-              description:
-              'Like: Tap the heart if you like something.\n'
-                  'Comment: Talk to others using comments.\n'
-                  'Follow: Connect with others by following them.',
-              imageUrl: 'https://drive.google.com/uc?export=view&id=1R0Q8N-3fsmFvkfZ3DX_6FHAg4PHNpELx',
-            ),
-            _buildSectionCard(
-              title: 'Searching Users',
-              description: 'Find your friends with the search.',
-              imageUrl: 'https://drive.google.com/uc?export=view&id=1o0xn-ya_c7zvwn4VaFm75hlSUfKN3mnU',
-            ),
-            _buildSectionCard(
-              title: 'Chatting with Users',
-              description: 'Use the "Messages" section to chat.',
-              imageUrl: 'https://drive.google.com/uc?export=view&id=1bfgUM9QotY0phpsiGBkIPnoI2S_2P8RV',
-            ),
-            _buildSectionCard(
-              title: 'Content Creation',
-              description:
-              'Creating a Content:\n1. Adding Text: Write a cool title and some text.\n'
-                  '2. Adding Pictures: Drag and drop pictures to make it awesome.\n'
-                  '3. Posting Content: Share it with everyone.',
-              imageUrl: 'https://drive.google.com/uc?export=view&id=1kmMSt6r6fitwSMT_UpUTFXs7UASva4Oe',
-            ),
-            _buildSectionCard(
-              title: 'Accessing Content Page',
-              description: 'Click on the news symbol to see all the posts.',
-              imageUrl: 'https://drive.google.com/uc?export=view&id=18xZliEIq6ytHGadaOgUoqn6I-u2MEPnU',
-            ),
-            _buildSectionCard(
-              title: 'Fun and Ads',
-              description: 'Ad Promotion: Explore cool promotions in the middle of your screen.',
-              imageUrl: 'https://drive.google.com/uc?export=view&id=1kA0D-EshU0aKKCpZMSCPHE0SjR6X8T5t',
-            ),
-
-          ],
+              SectionTitle('2. Content Guidelines'),
+              SectionContent(
+                'Express yourself responsibly:\n'
+                    '  - Post, comment, and upload content in English or Bangla.\n'
+                    '  - Respect others\' opinions; any harassment or inappropriate content is strictly prohibited.\n'
+                    '  - The app reserves the right to remove violating content.',
+              ),
+              SectionTitle('3. News Portal Contributions'),
+              SectionContent(
+                'Share your insights through articles:\n'
+                    '  - Contribute articles with images in English or Bangla.\n'
+                    '  - Ensure your content adheres to ethical standards and avoids copyright infringement.',
+              ),
+              SectionTitle('4. User Search Feature'),
+              SectionContent(
+                'Connect with others:\n'
+                    '  - Search for members by name, viewing their profile pictures and registered email addresses.\n'
+                    '  - Use this feature responsibly, respecting others\' privacy.',
+              ),
+              SectionTitle('5. Privacy and Security'),
+              SectionContent(
+                'Your data security matters:\n'
+                    '  - We prioritize the security of your data. Check our Privacy Policy for details.\n'
+                    '  - Do not attempt unauthorized access or misuse of other users\' data.',
+              ),
+              SectionTitle('6. Updates and Modifications'),
+              SectionContent(
+                'Stay informed:\n'
+                    '  - Terms and conditions may be updated periodically. It\'s your responsibility to stay informed.\n'
+                    '  - Continued app use after modifications implies acceptance of the updated terms.',
+              ),
+              SectionTitle('7. Termination'),
+              SectionContent(
+                'Our commitment to a safe community:\n'
+                    '  - ঢাবিয়ান সমাচার reserves the right to terminate or suspend user accounts for violation of terms.',
+              ),
+              SectionContent(
+                'By using ঢাবিয়ান সমাচার, you acknowledge that you have read, understood, and agree to these terms and conditions. Thank you for being a part of our vibrant community!',
+              ),
+              SizedBox(height: 16.0),
+              Divider(color: Colors.black),
+              SizedBox(height: 16.0),
+              SectionContent(
+                'For any issues or concerns, please contact us at:',
+                style: TextStyle(color: Colors.black),
+              ),
+              Row(
+                children: [
+                  Icon(Icons.email, color: Colors.black),
+                  SizedBox(width: 8.0),
+                  SectionContent(
+                    'nafisa12345643@gmail.com',
+                    style: TextStyle(color: Colors.black, decoration: TextDecoration.underline),
+                  ),
+                ],
+              ),
+              Row(
+                children: [
+                  Icon(Icons.email, color: Colors.black),
+                  SizedBox(width: 8.0),
+                  SectionContent(
+                    'anik11556@gmail.com',
+                    style: TextStyle(color: Colors.black, decoration: TextDecoration.underline),
+                  ),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
   }
+}
 
-  Widget _buildSectionCard({required String title, required String description, required String imageUrl}) {
-    return Card(
-      elevation: 5.0,
-      shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.circular(15.0),
+class SectionTitle extends StatelessWidget {
+  final String title;
+
+  SectionTitle(this.title);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Text(
+        title,
+        style: TextStyle(
+          fontSize: 20.0,
+          fontWeight: FontWeight.bold,
+          color: Colors.lightBlue,
+        ),
       ),
-      margin: EdgeInsets.symmetric(vertical: 8.0),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(
-              title,
-              style: TextStyle(fontSize: 18.0, fontWeight: FontWeight.bold),
-            ),
-          ),
-          Padding(
-            padding: const EdgeInsets.all(8.0),
-            child: Text(description),
-          ),
-          ClipRRect(
-            borderRadius: BorderRadius.circular(15.0),
-            child: Image.network(
-              imageUrl,
-              height: 200.0,
-              width: double.infinity,
-              fit: BoxFit.cover,
-            ),
-          ),
-        ],
+    );
+  }
+}
+
+class SectionContent extends StatelessWidget {
+  final String content;
+  final TextStyle? style;
+
+  SectionContent(this.content, {this.style});
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 8.0),
+      child: Text(
+        content,
+        style: style ?? TextStyle(
+          fontSize: 16.0,
+          color: Colors.black, // Black text color
+        ),
       ),
     );
   }
